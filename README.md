@@ -1,5 +1,7 @@
 # RINGEST Fase 4 — Discovery-filter candidate generation
 
+![RINGEST Phase 4 social preview](docs/social_preview.png)
+
 ## Estado
 
 Workspace inicial de Fase 4.
