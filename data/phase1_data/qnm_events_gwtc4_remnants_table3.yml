@@ -1,0 +1,43 @@
+source_family: gwtc4_remnants
+source_classification: A_double_prime_LVK_O4a_remnants
+secondary_classification: B_param_with_reconstructed_abs
+source_paper: "LVK, GWTC-4.0: Tests of General Relativity. III. Tests of the Remnants"
+arxiv: "2603.19021"
+table: "Table 3"
+pipeline: pSEOBNRV5PHM
+mode: "220"
+notes: "Minimal YAML for Paper 3 A_double_prime case study; Table 3 pSEOBNRV5PHM result with IMR-GR values printed in parentheses preserved separately."
+events:
+  - event_id: GW190910_112807
+    delta_f220: 0.01
+    delta_f220_minus: 0.10
+    delta_f220_plus: 0.13
+    delta_tau220: 0.61
+    delta_tau220_minus: 0.50
+    delta_tau220_plus: 0.63
+    f220_hz: 174.5
+    f220_hz_minus: 8.4
+    f220_hz_plus: 12.2
+    f220_imr_gr_hz: 177.1
+    f220_imr_gr_hz_minus: 8.2
+    f220_imr_gr_hz_plus: 8.3
+    tau220_ms: 9.49
+    tau220_ms_minus: 2.82
+    tau220_ms_plus: 3.46
+    tau220_imr_gr_ms: 5.83
+    tau220_imr_gr_ms_minus: 0.55
+    tau220_imr_gr_ms_plus: 0.75
+    redshifted_Mf_Msun: 123.2
+    redshifted_Mf_Msun_minus: 19.6
+    redshifted_Mf_Msun_plus: 16.4
+    redshifted_Mf_imr_gr_Msun: 96.1
+    redshifted_Mf_imr_gr_Msun_minus: 7.1
+    redshifted_Mf_imr_gr_Msun_plus: 8.5
+    chi_f: 0.90
+    chi_f_minus: 0.12
+    chi_f_plus: 0.05
+    chi_f_imr_gr: 0.69
+    chi_f_imr_gr_minus: 0.08
+    chi_f_imr_gr_plus: 0.07
+    uncertainty_type: asymmetric_90_percent_credible_interval
+    notes: "Table 3 pSEOBNRV5PHM result; IMR-GR values are those printed in parentheses in the source table."

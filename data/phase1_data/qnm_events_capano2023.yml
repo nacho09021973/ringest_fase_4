@@ -1,0 +1,39 @@
+source_family: capano2023
+source_classification: B_abs_agnostic_labels
+source_paper: "Capano et al., Phys. Rev. Lett. 131, 221402 (2023)"
+doi: "10.1103/PhysRevLett.131.221402"
+arxiv: "2105.05238"
+notes: "Agnostic frequency-range extraction for GW190521; posterior Kerr identification preserved separately."
+events:
+  - event_id: GW190521
+    analysis_reference_time_gps: 1242442967.445
+    analysis_time_offset_ms: 6
+    resonances:
+      - agnostic_range: A
+        agnostic_frequency_range_hz: [50, 80]
+        mode_label_original: range_A_primary
+        kerr_identification: "220_candidate"
+        identification_status: posterior_consistent_with_kerr_mode
+        f_hz: 63
+        f_hz_minus: 2
+        f_hz_plus: 2
+        tau_ms: 26
+        tau_ms_minus: 6
+        tau_ms_plus: 8
+        uncertainty_type: asymmetric_credible_interval
+        frame: detector
+        notes: "Agnostic range A; interpreted posteriorly as compatible with the Kerr (2,2,0) mode."
+      - agnostic_range: B
+        agnostic_frequency_range_hz: [80, 256]
+        mode_label_original: range_B_secondary
+        kerr_identification: "330_candidate"
+        identification_status: posterior_consistent_with_kerr_mode
+        f_hz: 98
+        f_hz_minus: 7
+        f_hz_plus: 89
+        tau_ms: 40
+        tau_ms_minus: 30
+        tau_ms_plus: 50
+        uncertainty_type: asymmetric_credible_interval
+        frame: detector
+        notes: "Agnostic range B; interpreted posteriorly as compatible with the Kerr (3,3,0) mode."
