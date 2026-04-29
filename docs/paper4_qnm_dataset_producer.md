@@ -20,7 +20,7 @@ Initial Phase 4 path:
 02b_literature_to_dataset.py
 ```
 
-Active Paper 4 path after the schema/provenance patch:
+Active Paper 4 path after schema/provenance alignment:
 
 ```text
 02c_paper4_literature_to_dataset.py

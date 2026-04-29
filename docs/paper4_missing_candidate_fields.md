@@ -2,14 +2,14 @@
 
 ## Scope
 
-This document records the fields still missing or non-canonical in the initial Paper 4 QNM dataset. It does not patch the producer, does not modify source data, does not identify candidates, and does not change any physical threshold or residual definition.
+This document records the fields still missing or non-canonical in the initial Paper 4 QNM dataset. It does not modify the producer, does not modify source data, does not identify candidates, and does not change any physical threshold or residual definition.
 
 ## Current status
 
 - dataset status: partially Kerr-ready
 - run-dir: `runs/paper4_initial_qnm_dataset`
 - producer for the initial run: `02b_literature_to_dataset.py`
-- active Paper 4 producer after schema/provenance patch: `02c_paper4_literature_to_dataset.py`
+- active Paper 4 producer after schema/provenance alignment: `02c_paper4_literature_to_dataset.py`
 
 The current CSVs already contain observed QNM frequency/damping fields, final-mass/final-spin metadata, redshift, Kerr predictions, and residual columns. The blocker for a traceable candidate audit is not the absence of all Kerr ingredients; it is the absence of canonical candidate-audit identifiers and provenance fields.
 
@@ -56,7 +56,7 @@ A. Document-only mapping.
 
 Record that `event -> event_id`, `pole_source -> source_paper`, `freq_hz -> f_hz`, `sigma_freq_hz -> sigma_f_hz`, `damping_hz -> gamma_hz`, `sigma_damping_hz -> sigma_gamma_hz`, and `z -> redshift` are accepted aliases for the current audit. This avoids code changes but leaves downstream candidate tables dependent on manual mapping.
 
-B. Minimal patch to the Paper 4 QNM producer.
+B. Minimal schema/provenance alignment in the Paper 4 QNM producer.
 
 Add canonical metadata columns while preserving existing columns and values: `event_id`, `l`, `m`, `n`, `mode`, `sigma_tau_ms`, and `source_paper`. This would materialize fields the producer already reads from YAML, without changing frequencies, damping rates, Kerr predictions, residuals, thresholds, or row selection.
 
@@ -66,4 +66,4 @@ If adding columns to the historical producer is considered too broad for existin
 
 ## Recommended next step
 
-Patch the producer minimally to materialize canonical candidate-audit fields without changing the physical values.
+Align the producer schema minimally to materialize canonical candidate-audit fields without changing the physical values.

@@ -1,10 +1,10 @@
-# Paper 4 — QNM Schema Patch
+# Paper 4 — QNM Schema Alignment
 
 ## Scope
 
-This patch only materializes canonical Paper 4 schema and provenance fields that already exist in the YAML source or are already read by the QNM producer. It does not change physical values, Kerr formulas, residual definitions, thresholds, row filtering, or candidate criteria.
+This schema alignment only materializes canonical Paper 4 fields and provenance fields that already exist in the YAML source or are already read by the QNM producer. It does not change physical values, Kerr formulas, residual definitions, thresholds, row filtering, or candidate criteria.
 
-## Code change
+## Field alignment
 
 `02c_paper4_literature_to_dataset.py` now emits these additional columns at the end of each CSV row:
 
@@ -18,9 +18,9 @@ This patch only materializes canonical Paper 4 schema and provenance fields that
 | `sigma_tau_ms` | copied from the YAML mode entry |
 | `source_paper` | same provenance text currently emitted as `pole_source` |
 
-Existing columns are preserved. The patch separates raw YAML mode labels from the producer's existing internal defaults, so the emitted canonical fields reflect source metadata when present.
+Existing columns are preserved. The field alignment separates raw YAML mode labels from the producer's existing internal defaults, so the emitted canonical fields reflect source metadata when present. This is provenance materialization for already available source fields, not a recalculation or reinterpretation of the QNM values.
 
-The active Paper 4 producer was originally copied from `/home/ignac/RINGEST/02b_literature_to_dataset.py`. The first Phase 4 dataset run used the copied `02b_literature_to_dataset.py`; after the schema/provenance patch, the active Paper 4 producer was renamed to `02c_paper4_literature_to_dataset.py` to avoid cross-phase provenance ambiguity.
+The active Paper 4 producer was originally copied from `/home/ignac/RINGEST/02b_literature_to_dataset.py`. The first Phase 4 dataset run used the copied `02b_literature_to_dataset.py`; after schema/provenance alignment, the active Paper 4 producer was renamed to `02c_paper4_literature_to_dataset.py` to avoid cross-phase provenance ambiguity.
 
 ## Command
 
