@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-02b_literature_to_dataset.py  v1.0
+02c_paper4_literature_to_dataset.py  v1.0
 
 Lee valores QNM de LITERATURA (o theory-seed Berti) para alimentar el
 bridge real-data  stage02. Reemplaza el carril de extraccion ESPRIT
@@ -22,7 +22,7 @@ Schema identico al legacy qnm_dataset_220.csv + 4 columnas opcionales:
 sigma_freq_hz, sigma_damping_hz, sigma_M_final_Msun, sigma_chi_final.
 
 Uso:
-    python3 02b_literature_to_dataset.py \\
+    python3 02c_paper4_literature_to_dataset.py \\
         --sources data/qnm_events_literature.yml \\
         --out runs/qnm_dataset_literature
 """
@@ -38,7 +38,7 @@ from typing import Any, Dict, List, Optional
 
 import yaml
 
-SCRIPT_VERSION = "02b_literature_to_dataset.py v1.1"
+SCRIPT_VERSION = "02c_paper4_literature_to_dataset.py v1.1"
 
 # Kerr l=m=2 n=0 table from Berti 2009 (arXiv:0905.2975, Table VIII).
 G_OVER_C3_PER_MSUN = 4.925491025543576e-6  # s / M_sun

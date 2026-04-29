@@ -6,7 +6,7 @@ This patch only materializes canonical Paper 4 schema and provenance fields that
 
 ## Code change
 
-`02b_literature_to_dataset.py` now emits these additional columns at the end of each CSV row:
+`02c_paper4_literature_to_dataset.py` now emits these additional columns at the end of each CSV row:
 
 | column | source |
 |---|---|
@@ -20,6 +20,8 @@ This patch only materializes canonical Paper 4 schema and provenance fields that
 
 Existing columns are preserved. The patch separates raw YAML mode labels from the producer's existing internal defaults, so the emitted canonical fields reflect source metadata when present.
 
+The active Paper 4 producer was originally copied from `/home/ignac/RINGEST/02b_literature_to_dataset.py`. The first Phase 4 dataset run used the copied `02b_literature_to_dataset.py`; after the schema/provenance patch, the active Paper 4 producer was renamed to `02c_paper4_literature_to_dataset.py` to avoid cross-phase provenance ambiguity.
+
 ## Command
 
 ```bash
@@ -28,10 +30,20 @@ python3 02b_literature_to_dataset.py \
   --out runs/paper4_qnm_dataset_schema_v2
 ```
 
+Renamed-producer verification command:
+
+```bash
+python3 02c_paper4_literature_to_dataset.py \
+  --sources data/phase1_data/qnm_events_literature.yml \
+  --out runs/paper4_qnm_dataset_schema_v2_renamed
+```
+
 ## Outputs
 
 - `runs/paper4_qnm_dataset_schema_v2/qnm_dataset.csv`
 - `runs/paper4_qnm_dataset_schema_v2/qnm_dataset_220.csv`
+- `runs/paper4_qnm_dataset_schema_v2_renamed/qnm_dataset.csv`
+- `runs/paper4_qnm_dataset_schema_v2_renamed/qnm_dataset_220.csv`
 
 ## Validation
 
@@ -39,6 +51,8 @@ python3 02b_literature_to_dataset.py \
 |---|---:|---:|
 | `runs/paper4_qnm_dataset_schema_v2/qnm_dataset.csv` | 20 | 19 |
 | `runs/paper4_qnm_dataset_schema_v2/qnm_dataset_220.csv` | 17 | 16 |
+| `runs/paper4_qnm_dataset_schema_v2_renamed/qnm_dataset.csv` | 20 | 19 |
+| `runs/paper4_qnm_dataset_schema_v2_renamed/qnm_dataset_220.csv` | 17 | 16 |
 
 New-column coverage:
 
@@ -46,6 +60,8 @@ New-column coverage:
 |---|---:|---:|---:|---:|---:|---:|---:|
 | `qnm_dataset.csv` | 19/19 | 19/19 | 19/19 | 19/19 | 19/19 | 19/19 | 19/19 |
 | `qnm_dataset_220.csv` | 16/16 | 16/16 | 16/16 | 16/16 | 16/16 | 16/16 | 16/16 |
+
+The renamed-producer verification run under `runs/paper4_qnm_dataset_schema_v2_renamed` has the same complete coverage for these columns: 19/19 in `qnm_dataset.csv` and 16/16 in `qnm_dataset_220.csv`.
 
 The producer reported the same row totals as the initial dataset run: 19 total rows and 16 rows passing the existing `is_220_candidate` filter.
 

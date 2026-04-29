@@ -8,7 +8,8 @@ This document records the fields still missing or non-canonical in the initial P
 
 - dataset status: partially Kerr-ready
 - run-dir: `runs/paper4_initial_qnm_dataset`
-- producer: `02b_literature_to_dataset.py`
+- producer for the initial run: `02b_literature_to_dataset.py`
+- active Paper 4 producer after schema/provenance patch: `02c_paper4_literature_to_dataset.py`
 
 The current CSVs already contain observed QNM frequency/damping fields, final-mass/final-spin metadata, redshift, Kerr predictions, and residual columns. The blocker for a traceable candidate audit is not the absence of all Kerr ingredients; it is the absence of canonical candidate-audit identifiers and provenance fields.
 
@@ -55,13 +56,13 @@ A. Document-only mapping.
 
 Record that `event -> event_id`, `pole_source -> source_paper`, `freq_hz -> f_hz`, `sigma_freq_hz -> sigma_f_hz`, `damping_hz -> gamma_hz`, `sigma_damping_hz -> sigma_gamma_hz`, and `z -> redshift` are accepted aliases for the current audit. This avoids code changes but leaves downstream candidate tables dependent on manual mapping.
 
-B. Minimal patch to `02b_literature_to_dataset.py`.
+B. Minimal patch to the Paper 4 QNM producer.
 
 Add canonical metadata columns while preserving existing columns and values: `event_id`, `l`, `m`, `n`, `mode`, `sigma_tau_ms`, and `source_paper`. This would materialize fields the producer already reads from YAML, without changing frequencies, damping rates, Kerr predictions, residuals, thresholds, or row selection.
 
-C. Create a renamed Paper 4 producer if compatibility would break.
+C. Create or keep a renamed Paper 4 producer if compatibility would break.
 
-If adding columns to the historical producer is considered too broad for existing downstream scripts, create a Paper 4-specific producer or export mode that emits a candidate-audit schema while leaving the legacy output untouched.
+If adding columns to the historical producer is considered too broad for existing downstream scripts, keep a Paper 4-specific producer or export mode that emits a candidate-audit schema while leaving the legacy output untouched. This is the provenance role now served by `02c_paper4_literature_to_dataset.py`.
 
 ## Recommended next step
 

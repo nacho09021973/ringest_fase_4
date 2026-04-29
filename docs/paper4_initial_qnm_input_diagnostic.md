@@ -31,6 +31,14 @@ Both copies are byte-identical. The copy used here was brought into Phase 4 as:
 02b_literature_to_dataset.py
 ```
 
+After the initial diagnostic, the Paper 4-specific producer was renamed and adapted as:
+
+```text
+02c_paper4_literature_to_dataset.py
+```
+
+The original provenance remains `/home/ignac/RINGEST/02b_literature_to_dataset.py`; the first run documented below was performed with the copied `02b_literature_to_dataset.py`.
+
 ## Command executed
 
 The operational command executed in Phase 4 was:
@@ -65,7 +73,7 @@ The source input therefore contains 19 literature QNM rows. The 220-filtered out
 
 This is still a canonical input diagnostic. It is not an A/B/C/D/E reporting-heterogeneity matrix and it is not a candidate list.
 
-An earlier fallback attempt used `scripts/paper3/build_baseline_a_coverage.py`, which can produce `baseline_a_coverage.csv`. That was the wrong or incomplete producer for this objective because it does not generate `qnm_dataset.csv`. The current `runs/paper4_initial_qnm_dataset` listing contains the two intended `02b_literature_to_dataset.py` outputs and no `baseline_a_coverage.csv`.
+An earlier fallback attempt used `scripts/paper3/build_baseline_a_coverage.py`, which can produce `baseline_a_coverage.csv`. That was the wrong or incomplete producer for this objective because it does not generate `qnm_dataset.csv`. The current `runs/paper4_initial_qnm_dataset` listing contains the two intended initial `02b_literature_to_dataset.py` outputs and no `baseline_a_coverage.csv`.
 
 ## Generated CSV columns
 
