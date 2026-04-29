@@ -103,6 +103,8 @@ OUTPUT_COLUMNS = [
     "sigma_f_kerr_hz", "sigma_gamma_kerr_hz",
     "residual_f", "residual_gamma",
     "kerr_sigma_source",
+    # Paper 4 canonical schema/provenance fields
+    "event_id", "l", "m", "n", "mode", "sigma_tau_ms", "source_paper",
 ]
 
 KERR_220_FAIR_THRESHOLD = 0.15
@@ -148,16 +150,21 @@ def row_from_entry(event_name: str, ifo: str,
                    mode_rank: int,
                    mode_entry: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """Build a single CSV row from a YAML mode entry."""
-    l = int(mode_entry.get("l", 2))
-    m = int(mode_entry.get("m", 2))
-    n = int(mode_entry.get("n", 0))
+    raw_l = mode_entry.get("l")
+    raw_m = mode_entry.get("m")
+    raw_n = mode_entry.get("n")
+    l = int(raw_l) if raw_l is not None else 2
+    m = int(raw_m) if raw_m is not None else 2
+    n = int(raw_n) if raw_n is not None else 0
     if (l, m) != (2, 2):
         print(f"  [SKIP] {event_name} mode ({l},{m},{n}): only l=m=2 supported for now")
         return None
 
     f_hz = mode_entry.get("f_hz")
     tau_ms = mode_entry.get("tau_ms")
+    sigma_tau_ms = mode_entry.get("sigma_tau_ms")
     source_paper = str(mode_entry.get("source_paper", "unknown"))
+    mode_label = f"{raw_l}{raw_m}{raw_n}" if None not in (raw_l, raw_m, raw_n) else ""
 
     # scale for normalization uses source-frame mass (omega_re_norm is dimensionless)
     scale = M_f * G_OVER_C3_PER_MSUN  # s per rad/s (to dimensionless)
@@ -195,7 +202,6 @@ def row_from_entry(event_name: str, ifo: str,
         omega_im_norm = omega_im * scale if scale > 0 else float("nan")
         tau_ms = tau_ms_val
         sigma_f_hz = mode_entry.get("sigma_f_hz")
-        sigma_tau_ms = mode_entry.get("sigma_tau_ms")
         # Propagate sigma_tau to sigma_damping_hz: d/dtau(1000/tau) = -1000/tau^2
         if sigma_tau_ms is not None and tau_ms_val > 0:
             sigma_damping_hz = 1000.0 * float(sigma_tau_ms) / (tau_ms_val ** 2)
@@ -314,6 +320,13 @@ def row_from_entry(event_name: str, ifo: str,
         "residual_f": residual_f,
         "residual_gamma": residual_gamma,
         "kerr_sigma_source": kerr_sigma_source,
+        "event_id": event_name,
+        "l": raw_l,
+        "m": raw_m,
+        "n": raw_n,
+        "mode": mode_label,
+        "sigma_tau_ms": sigma_tau_ms,
+        "source_paper": source_paper,
     }
 
 
