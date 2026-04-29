@@ -1,0 +1,91 @@
+# Paper 4 — QNM Dataset Column Audit
+
+## Scope
+
+This document audits only the structure and column coverage of the initial Paper 4 QNM CSV outputs. It does not identify candidate events, does not change thresholds, and does not perform new physical calculations.
+
+## Inputs
+
+- `runs/paper4_initial_qnm_dataset/qnm_dataset.csv`
+- `runs/paper4_initial_qnm_dataset/qnm_dataset_220.csv`
+- producer: `02b_literature_to_dataset.py`
+- run-dir: `runs/paper4_initial_qnm_dataset`
+
+## Row counts
+
+| file | line count | data rows | note |
+|---|---:|---:|---|
+| `qnm_dataset.csv` | 20 | 19 | line count includes the CSV header |
+| `qnm_dataset_220.csv` | 17 | 16 | line count includes the CSV header |
+
+## Available columns
+
+| column | present in qnm_dataset.csv | present in qnm_dataset_220.csv | coverage / completeness | relevance for candidate criteria |
+|---|---|---|---|---|
+| `event` | yes | yes | 19/19; 16/16 | Event identifier, but not named `event_id`. |
+| `ifo` | yes | yes | 19/19; 16/16 | Detector/source grouping metadata. |
+| `pole_source` | yes | yes | 19/19; 16/16 | Source provenance, equivalent to a source-paper field. |
+| `mode_rank` | yes | yes | 19/19; 16/16 | Partial mode information; no explicit `l,m,n` label. |
+| `freq_hz` | yes | yes | 19/19; 16/16 | Observed QNM frequency. |
+| `damping_hz` | yes | yes | 19/19; 16/16 | Observed damping rate; equivalent to an observed gamma field. |
+| `tau_ms` | yes | yes | 19/19; 16/16 | Observed damping time. |
+| `omega_re` | yes | yes | 19/19; 16/16 | Angular-frequency representation. |
+| `omega_im` | yes | yes | 19/19; 16/16 | Damping representation. |
+| `amp_abs` | yes | yes | 0/19; 0/16 | Present but empty; not usable for candidate support. |
+| `relative_rms` | yes | yes | 0/19; 0/16 | Present but empty; not usable for candidate support. |
+| `M_final_Msun` | yes | yes | 19/19; 16/16 | Final mass. |
+| `chi_final` | yes | yes | 19/19; 16/16 | Final spin. |
+| `z` | yes | yes | 19/19; 16/16 | Redshift. |
+| `M_final_detector_Msun` | yes | yes | 19/19; 16/16 | Detector-frame final mass. |
+| `is_220_candidate` | yes | yes | 19/19; 16/16 | Producer's 220 filter flag; not a physical candidate claim. |
+| `kerr_220_distance` | yes | yes | 19/19; 16/16 | Diagnostic distance to the Kerr 220 reference. |
+| `kerr_220_chi_ref` | yes | yes | 19/19; 16/16 | Spin reference used by the Kerr-220 diagnostic. |
+| `omega_re_norm` | yes | yes | 19/19; 16/16 | Dimensionless frequency diagnostic. |
+| `omega_im_norm` | yes | yes | 19/19; 16/16 | Dimensionless damping diagnostic. |
+| `sigma_freq_hz` | yes | yes | 19/19; 16/16 | Frequency uncertainty; equivalent to `sigma_f_hz`. |
+| `sigma_damping_hz` | yes | yes | 19/19; 16/16 | Damping-rate uncertainty; equivalent to `sigma_gamma_hz`. |
+| `sigma_M_final_Msun` | yes | yes | 19/19; 16/16 | Final-mass uncertainty. |
+| `sigma_chi_final` | yes | yes | 19/19; 16/16 | Final-spin uncertainty. |
+| `f_kerr_hz` | yes | yes | 19/19; 16/16 | Kerr frequency prediction. |
+| `gamma_kerr_hz` | yes | yes | 19/19; 16/16 | Kerr damping-rate prediction. |
+| `sigma_f_kerr_hz` | yes | yes | 19/19; 16/16 | Kerr frequency prediction uncertainty. |
+| `sigma_gamma_kerr_hz` | yes | yes | 19/19; 16/16 | Kerr damping-rate prediction uncertainty. |
+| `residual_f` | yes | yes | 19/19; 16/16 | Standardized frequency residual. |
+| `residual_gamma` | yes | yes | 19/19; 16/16 | Standardized damping-rate residual. |
+| `kerr_sigma_source` | yes | yes | 19/19; 16/16 | Provenance class for Kerr uncertainty propagation. |
+
+## Candidate-critical fields
+
+| field | status |
+|---|---|
+| `event_id` | Exact column absent; equivalent identifier is `event`, complete in both files. |
+| `mode` | Exact column absent; `mode_rank` and `is_220_candidate` are present, but no explicit `l,m,n` or `220` label is emitted. |
+| `f_hz` | Exact column absent; equivalent observed frequency is `freq_hz`, complete in both files. |
+| `sigma_f_hz` | Exact column absent; equivalent observed frequency uncertainty is `sigma_freq_hz`, complete in both files. |
+| `tau_ms` | Present and complete in both files. |
+| `sigma_tau_ms` | Absent. The dataset instead contains propagated `sigma_damping_hz`. |
+| `gamma_hz` | Exact observed-gamma column absent; equivalent observed damping rate is `damping_hz`, complete in both files. |
+| `sigma_gamma_hz` | Exact column absent; equivalent observed damping-rate uncertainty is `sigma_damping_hz`, complete in both files. |
+| `M_final` or `M_final_Msun` | `M_final_Msun` is present and complete in both files. |
+| `sigma_M_final_Msun` | Present and complete in both files. |
+| `chi_final` | Present and complete in both files. |
+| `sigma_chi_final` | Present and complete in both files. |
+| `redshift` | Exact column absent; equivalent field is `z`, complete in both files. |
+| `f_kerr_hz` | Present and complete in both files. |
+| `gamma_kerr_hz` | Present and complete in both files. |
+| `residual_f` | Present and complete in both files. |
+| `residual_gamma` | Present and complete in both files. |
+| `source_paper` | Exact column absent; equivalent provenance field is `pole_source`, complete in both files. |
+| `is_220_candidate` | Present and complete in both files. |
+
+## Verdict
+
+Classification: partially Kerr-ready.
+
+The dataset is more than QNM-ready because it includes observed frequencies, damping rates, final mass/spin, redshift, propagated uncertainties, Kerr predictions, and standardized residual columns with complete coverage in both CSV files. That is enough for a first structural Kerr residual audit by event.
+
+It is not fully Kerr-ready for candidate claims because several candidate-critical fields are present only under equivalent names, not canonical names, and the mode label is incomplete. In particular, there is no explicit `event_id`, no explicit `l,m,n` or `220` mode label, no `sigma_tau_ms`, and no literal `source_paper` field. `amp_abs` and `relative_rms` are present but empty. These gaps should be resolved or explicitly mapped before using the table as a candidate-classification input.
+
+## Immediate next step
+
+Document missing critical fields.
