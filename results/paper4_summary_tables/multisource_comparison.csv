@@ -1,0 +1,3 @@
+dataset_id,source_family,n_events,n_positive,sign_pattern,interpretation
+phase1_gwtc2_tgr_imr,GWTC-2 TGR IMR,16,14,14/16_positive,positive_sign_asymmetry_methodological_systematics_limited
+gwtc4_pseobnr,GWTC-4 pSEOBNR,9,9,9/9_positive,positive_sign_asymmetry_methodological_systematics_limited

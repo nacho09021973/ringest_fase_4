@@ -1,0 +1,13 @@
+{
+  "no_frequency_outlier_claim": true,
+  "positive_sign_asymmetry_observed": true,
+  "damping_gamma_status": "systematics_limited",
+  "remnant_mapping_level1a_status": "implemented_in_current_csv",
+  "remnant_mapping_level2_status": "pending_posterior_samples",
+  "interpretation": "methodological_systematics_limited",
+  "forbidden_interpretation": [
+    "beyond_kerr_claim",
+    "candidate_catalogue",
+    "population_kerr_violation_claim"
+  ]
+}

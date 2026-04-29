@@ -1,0 +1,39 @@
+{
+  "script": "tools/paper4_build_summary_tables.py",
+  "timestamp_utc": "2026-04-29T15:57:09.386457+00:00",
+  "inputs": [
+    {
+      "path": "runs/paper4_qnm_dataset_schema_v2_renamed/qnm_dataset_220.csv",
+      "sha256": "1c217f679ed567f4a480d8c7e66527212c6868d131fc3a3e4c5615916bf13ea7"
+    },
+    {
+      "path": "runs/paper4_qnm_dataset_gwtc4_pseobnr_v1/qnm_dataset_220.csv",
+      "sha256": "430e3d3cbd17c726237922517a3b18aba4ba6274ccc0367f3ed763b291c1d39c"
+    }
+  ],
+  "previous_outputs_detected": [
+    "runs/paper4_frequency_sign_test_v1/frequency_sign_test_summary.json",
+    "runs/paper4_frequency_sign_test_v1/frequency_sign_test_table.csv",
+    "runs/paper4_frequency_sign_test_gwtc4_pseobnr_v1/frequency_sign_test_summary.json",
+    "runs/paper4_frequency_sign_test_gwtc4_pseobnr_v1/frequency_sign_test_table.csv",
+    "runs/paper4_frequency_sign_systematics_v1/frequency_sign_systematics_summary.json",
+    "runs/paper4_multisource_paired_comparison_v1/paired_comparison_summary.json",
+    "runs/paper4_multisource_paired_comparison_v1/paired_common_events.csv"
+  ],
+  "outputs": [
+    "runs/paper4_summary_tables/frequency_sign_summary.csv",
+    "runs/paper4_summary_tables/multisource_comparison.csv",
+    "runs/paper4_summary_tables/paired_common_events.csv",
+    "runs/paper4_summary_tables/methodological_verdict.json",
+    "runs/paper4_summary_tables/manifest.json"
+  ],
+  "git_status_short": "",
+  "notes": [
+    "Consumes existing residual_f values only.",
+    "Does not recalculate f_kerr_hz.",
+    "Does not recalculate sigma_f_kerr_hz.",
+    "Does not recalculate or declare candidates.",
+    "Gamma/damping is carried only as systematics_limited verdict context.",
+    "Sign p-values reuse existing Paper 4 sign-test JSON files when present."
+  ]
+}
